@@ -42,6 +42,8 @@ class MyCustomView : View {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
+        // Here we draw a rectangle on the view's canvas.
+        // The size of the rectangle is the same as the size the view.
         val paint = Paint(ANTI_ALIAS_FLAG)
         paint.color = Color.MAGENTA
         val rect = Rect()
