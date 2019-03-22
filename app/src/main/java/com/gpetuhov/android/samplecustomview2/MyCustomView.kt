@@ -19,6 +19,7 @@ class MyCustomView : View {
     private var paint = Paint(ANTI_ALIAS_FLAG)
     private var rect = Rect()
     private var squareColor = Color.MAGENTA
+    private var padding = 0
 
     // Our custom view class has no primary constructor,
     // only secondary constructors, that call the corresponding
@@ -58,16 +59,34 @@ class MyCustomView : View {
         super.onDraw(canvas)
 
         // Here we draw a rectangle on the view's canvas.
-        // The size of the rectangle is the same as the size the view.
-        rect.left = 0
-        rect.right = width
-        rect.top = 0
-        rect.bottom = height
+        // The size of the rectangle is the same as the size the view
+        // (minus padding)
+        rect.left = 0 + padding
+        rect.right = width - padding
+        rect.top = 0 + padding
+        rect.bottom = height - padding
 
         canvas?.drawRect(rect, paint)
 
         // Notice that we should not instantiate variables in onDraw
         // (avoid using layout allocations during draw operations)
         // to avoid memory leaks.
+    }
+
+    fun swapColor() {
+        paint.color = if (paint.color == squareColor) Color.RED else squareColor
+
+        // Call this to update view
+        postInvalidate()
+    }
+
+    fun customPaddingUp(padding: Int) {
+        this.padding += padding
+        postInvalidate()
+    }
+
+    fun customPaddingDown(padding: Int) {
+        this.padding -= padding
+        postInvalidate()
     }
 }
