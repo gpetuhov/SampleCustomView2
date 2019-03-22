@@ -14,6 +14,9 @@ import android.graphics.Rect
 
 class MyCustomView : View {
 
+    private var paint = Paint(ANTI_ALIAS_FLAG)
+    private var rect = Rect()
+
     // Our custom view class has no primary constructor,
     // only secondary constructors, that call the corresponding
     // constructors of the super class.
@@ -44,14 +47,16 @@ class MyCustomView : View {
 
         // Here we draw a rectangle on the view's canvas.
         // The size of the rectangle is the same as the size the view.
-        val paint = Paint(ANTI_ALIAS_FLAG)
         paint.color = Color.MAGENTA
-        val rect = Rect()
         rect.left = 0
         rect.right = width
         rect.top = 0
         rect.bottom = height
 
         canvas?.drawRect(rect, paint)
+
+        // Notice that we should not instantiate variables in onDraw
+        // (avoid using layout allocations during draw operations)
+        // to avoid memory leaks.
     }
 }
