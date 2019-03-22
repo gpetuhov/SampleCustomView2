@@ -12,10 +12,13 @@ import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.graphics.Rect
 
 
+// Custom attributes for our custom view are declared in values/attrs.xml file
+
 class MyCustomView : View {
 
     private var paint = Paint(ANTI_ALIAS_FLAG)
     private var rect = Rect()
+    private var squareColor = Color.MAGENTA
 
     // Our custom view class has no primary constructor,
     // only secondary constructors, that call the corresponding
@@ -39,7 +42,16 @@ class MyCustomView : View {
     }
 
     private fun init(attrs: AttributeSet?) {
-        // TODO: implement
+        // Obtain custom attributes (initialized in xml layout file) (if any)
+        if (attrs != null) {
+            // Obtain custom attributes array and get color attribute value from it
+            val attributesArray = context.obtainStyledAttributes(attrs, R.styleable.MyCustomView)
+            squareColor = attributesArray?.getColor(R.styleable.MyCustomView_square_color, Color.GREEN) ?: Color.GREEN
+            paint.color = squareColor
+
+            // Don't forget to recycle attributes array after use
+            attributesArray.recycle()
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -47,7 +59,6 @@ class MyCustomView : View {
 
         // Here we draw a rectangle on the view's canvas.
         // The size of the rectangle is the same as the size the view.
-        paint.color = Color.MAGENTA
         rect.left = 0
         rect.right = width
         rect.top = 0

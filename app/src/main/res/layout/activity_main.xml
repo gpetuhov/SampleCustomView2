@@ -9,8 +9,11 @@
         android:gravity="center"
         tools:context=".MainActivity">
 
+    <!-- We can use our custom view in the layout file just like this -->
+    <!-- square_color is a custom attribute of our view, it is declared in values/attrs.xml file -->
     <com.gpetuhov.android.samplecustomview2.MyCustomView
             android:layout_width="200dp"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            app:square_color="@color/colorPrimary"/>
 
 </LinearLayout>

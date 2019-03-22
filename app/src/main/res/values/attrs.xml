@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Here we declare custom attributes of our custom view -->
+<resources>
+    <declare-styleable name="MyCustomView">
+        <attr name="square_color" format="color"/>
+    </declare-styleable>
+</resources>
