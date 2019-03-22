@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         colorButton.setOnClickListener { myCustomView.swapColor() }
-        plusButton.setOnClickListener { myCustomView.customPaddingUp(30) }
-        minusButton.setOnClickListener { myCustomView.customPaddingDown(30) }
+        plusButton.setOnClickListener { myCustomView.customPaddingDown(30) }
+        minusButton.setOnClickListener { myCustomView.customPaddingUp(30) }
     }
 }
